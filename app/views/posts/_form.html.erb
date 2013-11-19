@@ -1,0 +1,29 @@
+<div class='well'
+<% if @post.errors.any? %>
+<%= render 'shared/errors', object: @post %>
+<% end %>
+
+<%= form_for @post do |f| %>
+  <%= f.label :title %>
+  <%=f.text_field :title %>
+  </br>
+  <%= f.label :url %>
+  <%=f.text_field :url %>
+  </br>
+  <%=f.label :description %>
+  <%=f.text_area :description %>
+  </br>
+
+<!-- </br>
+<select name='post[category_ids][]' multiple='multiple'>
+   <option value='1'>Rubyists</option>
+   <option value='2'>Pythonists</option>
+</select>
+</br> -->
+
+   <%= collection_select(:category_ids, @category, Category.all,:id, :name) %>
+   </br>
+
+  <%= f.submit "Create Post", class: "btn btn-primary" %>
+<% end %>
+</div>
