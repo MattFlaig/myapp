@@ -9,7 +9,15 @@
       (<%= link_to 'edit', edit_post_path(post) %>)</li>
   		<p><%= post.description %> </p>
   		<p>
-        <span class="quiet">posted by</span> <%= post.user.username %>
+
+        <span class="quiet">posted by</span> 
+
+        <% if logged_in? %>
+          <%= link_to post.user.username, user_path(post.user) %>
+        <% else %>
+          <%= post.user.username %>
+        <% end %>
+
         <small>at <%= fix_date(post.created_at) %></small>
   		</p>
   		<small>

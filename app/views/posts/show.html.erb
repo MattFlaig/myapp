@@ -1,3 +1,9 @@
+<% if logged_in? && (current_user == @post.user || current_user.admin?) %>
+  <p class='pull-right'>
+    [<%= link_to "edit this post", edit_post_path(@post) %>]
+  </p>
+<% end %>
+
 <p>
 <%= render @post.categories %>
 </p>
@@ -8,6 +14,7 @@
 </p>
 <hr/>
 
+<% if logged_in? %>
 <p>
 <%= form_for [@post,@comment] do |f| %>
   <% if @comment.errors.any? %>
@@ -19,31 +26,28 @@
   <%= f.submit "Create Comment", class: "btn btn-primary" %>
 <% end %>
 </p>
-<h5>Comments:</5>
-<p>
-	<% @post.comments.each do |comment| %>
-  <div class="row">
-  <% if logged_in? %>
-   
-    <div class= "span0 well text-center">
-      <%= link_to vote_post_comment_path(@post, comment, vote: true), method: 'post' do %>
-      <i class='icon-arrow-up'></i>
-      <% end %>
-    </br>
-    <%= comment.total_votes %>
-    </br>
-      <%= link_to vote_post_comment_path(@post, comment, vote: false), method: 'post' do %>
-        <i class='icon-arrow-down'></i>
-      <% end %>
-  </div>  
-  <% end %>
+<% end %>
 
-	  <div class="well span8">
-	  	"<%= comment.body %>"
-	  <p>
-        <span class="quiet">by</span> <%= comment.user.username %>
-        <small>at <%= comment.created_at %></small>
-  	</p>
-  	</div>
-    </div>
-	  <% end %>
+<h5>Comments:</5>
+<% @post.comments.each do |comment| %>
+  <div class="row">
+    <% if logged_in? %>
+   
+      <div class= "span0 well text-center">
+        <%= link_to vote_post_comment_path(@post, comment, vote: true), method: 'post',remote: true do %>
+          <i class='icon-arrow-up'></i>
+        <% end %>
+          </br>
+          <span id='comment_<%=comment.id%>_votes'><%= comment.total_votes %></span>
+          </br>
+        <%= link_to vote_post_comment_path(@post, comment, vote: false), method: 'post',remote: true do %>
+          <i class='icon-arrow-down'></i>
+        <% end %>
+      </div>  
+
+    <% end %>
+
+<%= render 'comments/comment', comment: comment %>
+	
+  </div>
+<% end %>
