@@ -1,31 +1,31 @@
 <%= render 'shared/content_title', title: "Profile: #{@user.username}" %>
 
 <div class='well'>
-	<dl class='dl-horizontal'>
-		<dt>Username:</dt>
-		<dd><%= @user.username %></dd>
-		
-		<dt>Role:</dt>
-			<% if @user.role %>
+  <dl class='dl-horizontal'>
+    <dt>Username:</dt>
+    <dd><%= @user.username %></dd>
+    
+    <dt>Role:</dt>
+      <% if @user.role %>
         <dd>Administrator</dd>
         <% else %>
         <dd>User</dd>
       <% end %>
-		
-		<dt>Timezone:</dt>
-		<dd><%= @user.time_zone %></dd>
-	</dl>
+    
+    <dt>Timezone:</dt>
+    <dd><%= @user.time_zone %></dd>
+  </dl>
 </div>
 
 <h5><%= @user.username %> 's Activity </h5>
 
 <ul class='nav nav-tabs'>
-	<li class='<%= 'active' if params[:tab].nil? %>' >
-		<%= link_to "Posts (#{@user.posts.size})", user_path(@user) %>
-	</li>
-	<li class='<%= 'active' if params[:tab] == 'comments' %>' >
-		<%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: 'comments') %>
-	</li>
+  <li class='<%= 'active' if params[:tab].nil? %>' >
+    <%= link_to "Posts (#{@user.posts.size})", user_path(@user) %>
+  </li>
+  <li class='<%= 'active' if params[:tab] == 'comments' %>' >
+    <%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: 'comments') %>
+  </li>
 </ul>
 
 <% if params[:tab].nil? %>

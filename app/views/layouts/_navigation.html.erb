@@ -1,72 +1,69 @@
-
 <ul class="nav">
   <li>
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
 
-<% if logged_in? %>
+  <% if logged_in? %>
+    <li>
+      <%= link_to 'New Post', new_post_path %>
+    </li>
+    <li>
+      <%= link_to 'New Category', new_category_path if current_user.admin? %>
+    </li>
 
-  <li>
-    <%= link_to 'New Post', new_post_path %>
-  </li>
-  <li>
-    <%= link_to 'New Category', new_category_path if current_user.admin? %>
-  </li>
-
-  <li>
-  <div class='btn-group nav_item'>
-    <%= link_to '#',class: 'btn btn-small dropdown-toggle', 'data-toggle'=> 'dropdown' do %>
-      Categories <span class='caret'></span> 
-    <% end %>
-    <ul class='dropdown-menu'>
-      <% Category.all.each do |category|%>
-        <li>
-          <%= link_to category.name, category_path(category) %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  </li>
-  
-  <li>
-  <div class='btn-group nav_item'>
-    <%= link_to('#',class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown') do %>
-      <%= current_user.username %>
-      <span class='caret'></span>
-    <% end %>
-    <ul class='dropdown-menu'>
-      <li>
-        <%= link_to edit_user_path(current_user) do %>
-          <i class='icon-pencil'></i>
-            edit profile
+    <li>
+      <div class='btn-group nav_item'>
+        <%= link_to '#',class: 'btn btn-small dropdown-toggle', 'data-toggle'=> 'dropdown' do %>
+          Categories <span class='caret'></span> 
         <% end %>
-      </li>
-      <li>
-        <%= link_to user_path(current_user) do %>
-          <i class='icon-user'></i>
-            show profile
+        <ul class='dropdown-menu'>
+          <% Category.all.each do |category|%>
+            <li>
+              <%= link_to category.name, category_path(category) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </li>
+    
+    <li>
+      <div class='btn-group nav_item'>
+        <%= link_to('#',class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+          <%= current_user.username %>
+          <span class='caret'></span>
         <% end %>
-      </li>
-      <li>
-        <%= link_to logout_path do %>
-          <i class='icon-circle-arrow-left'></i>
-            logout
-        <% end %>
-      </li>
-        
-    </ul>
-  </div>
-  </li>
+        <ul class='dropdown-menu'>
+          <li>
+            <%= link_to edit_user_path(current_user) do %>
+              <i class='icon-pencil'></i>
+                edit profile
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_path(current_user) do %>
+              <i class='icon-user'></i>
+                show profile
+            <% end %>
+          </li>
+          <li>
+            <%= link_to logout_path do %>
+              <i class='icon-circle-arrow-left'></i>
+                logout
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </li>
 
   <% else %>
 
-  <li>
-    <%= link_to 'Login', login_path %>
-  </li>
-  <li>
-    <%= link_to 'Register', register_path %>
-  </li>
+    <li>
+      <%= link_to 'Login', login_path %>
+    </li>
+    <li>
+      <%= link_to 'Register', register_path %>
+    </li>
 
-<% end %>
+  <% end %>
 </ul>
 

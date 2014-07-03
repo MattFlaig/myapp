@@ -1,19 +1,18 @@
 <% show_post ||= false %>
 
 <div class="row">
-	  <div class="well span8">
-	  	<em>"<%= comment.body %>"</em>
-      <% if show_post %>
-        on <%= link_to comment.post.title, post_path(comment.post) %>
-      <% end %>
-	  <p>
+  <div class="well span8">
+    <em>"<%= comment.body %>"</em>
+    <% if show_post %>
+      on <%= link_to comment.post.title, post_path(comment.post) %>
+    <% end %>
+    <p>
       <% if logged_in? %>
         <span class="quiet">by</span> <%= link_to comment.user.username, user_path(comment.user) %>
       <% else %>
           <%= comment.user.username %>
       <% end %>
-      
-        <small>at <%= comment.created_at %></small>
-  	</p>
-  	</div>
+      <small>at <%= comment.created_at %></small>
+    </p>
+  </div>
 </div>

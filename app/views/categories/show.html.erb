@@ -1,31 +1,26 @@
 <ul>
-<% @category.posts.each do |post| %>
-  <div class="row">
-  	<div class="span8 well">
-  		
-      <%= render post.categories %>
-
-  		<li><h4><%= link_to post.title, fix_url(post.url) %></h4>
-      (<%= link_to 'edit', edit_post_path(post) %>)</li>
-  		<p><%= post.description %> </p>
-  		<p>
-
-        <span class="quiet">posted by</span> 
-
-        <% if logged_in? %>
-          <%= link_to post.user.username, user_path(post.user) %>
-        <% else %>
-          <%= post.user.username %>
-        <% end %>
-
-        <small>at <%= fix_date(post.created_at) %></small>
-  		</p>
-  		<small>
-  			<span>
-  				<%= link_to("#{post.comments.size} comments", post_path(post)) %>
-  			</span>
-  		</small>
-  	</div>
-  </div>
-<% end %>
+  <% @category.posts.each do |post| %>
+    <div class="row">
+      <div class="span8 well">
+        <%= render post.categories %>
+        <li><h4><%= link_to post.title, fix_url(post.url) %></h4>
+        (<%= link_to 'edit', edit_post_path(post) %>)</li>
+        <p><%= post.description %> </p>
+        <p>
+          <span class="quiet">posted by</span> 
+          <% if logged_in? %>
+            <%= link_to post.user.username, user_path(post.user) %>
+          <% else %>
+            <%= post.user.username %>
+          <% end %>
+          <small>at <%= fix_date(post.created_at) %></small>
+        </p>
+        <small>
+          <span>
+            <%= link_to("#{post.comments.size} comments", post_path(post)) %>
+          </span>
+        </small>
+      </div>
+    </div>
+  <% end %>
 </ul>
