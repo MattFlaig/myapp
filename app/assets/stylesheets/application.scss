@@ -12,18 +12,7 @@
  *= require_tree .
  */
 
-$navbarBackground:                #01172e ;
-$navbarBackgroundHighlight:       #2d73b9 ;
-$navbarText:                      #ebf4ea ;
-$navbarLinkColor:                 #ebf4ea ;
-$navbarLinkColorHover:            #000 ;
-$navbarSearchPlaceholderColor:    #EEC844 ;
-$bodyBackground:                  #ebf5fc ;
-
-
-
-
- @import "bootstrap";
+@import "bootstrap";
 
  .container {
   margin-left: 135px;
