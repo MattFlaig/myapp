@@ -17,7 +17,9 @@
   <div class="span8 well">
     <%= render post.categories %>
     <li><h4><%= link_to post.title, fix_url(post.url) %></h4>
+      <% if logged_in? %>
         (<%= link_to 'edit', edit_post_path(post) %>)
+      <% end %>
     </li>
     <p><%= post.description %> </p>
     <p>
