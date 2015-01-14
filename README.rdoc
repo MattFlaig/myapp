@@ -1,7 +1,9 @@
 == myapp (Postit)
 
 Functional clone of Reddit realized in Ruby on Rails and Twitter Bootstrap during the second Course at Tealeaf Academy: “Rapid Prototyping with Ruby on Rails”.
+
 Functionality:
+
 -	CRUD actions for posts and comments
 -	Nested resources
 -	Authentication and Sessions
