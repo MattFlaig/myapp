@@ -5,12 +5,21 @@ Functional clone of Reddit realized in Ruby on Rails and Twitter Bootstrap durin
 Functionality:
 
 -	CRUD actions for posts and comments
+
 -	Nested resources
+
 -	Authentication and Sessions
+
 -	Votes 
+
 -	1:m, n:m and polymorphic associations  
+
 -	Slugs for pretty URLs and SEO
+
 -	Using modules to extract common logic
+
 -	Adding timezones
+
 -	Deploying to heroku
+
 
